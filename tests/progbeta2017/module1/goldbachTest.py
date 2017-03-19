@@ -15,7 +15,7 @@ def allEvenNumbersInOutput(test):
 		return testResult
 	test.test = testMethod
 
-	test.description = lambda : "all even numbers occur in output"
+	test.description = lambda : "alle even getallen tot 1000 staan in de output"
 
 @t.test(1)
 def allCalculationsCorrect(test):
@@ -26,11 +26,11 @@ def allCalculationsCorrect(test):
 				continue
 			numbers = lib.getPositiveIntegersFromString(line)
 			if not any(sum(numbers) / 2 == n for n in numbers):
-				return False, "calculcation \"%s\" is incorrect" %line
-		return True, ""
+				return False, "berekening \"{}\" is incorrect".format(line)
+		return True
 	test.test = testMethod
 
-	test.description = lambda : "calculations on each line are correct"
+	test.description = lambda : "de berekeningen op elke regel zijn correct"
 
 @t.test(2)
 def allCalculationsContainTwoPrimes(test):
@@ -42,8 +42,8 @@ def allCalculationsContainTwoPrimes(test):
 				continue
 			numbers = lib.getPositiveIntegersFromString(line)
 			if sum(1 for n in numbers if n in primes) != 2:
-				return False, "calculation \"%s\" does not contain exactly two prime numbers" %line
-		return True, ""
+				return False, "berekening \"{}\" bevat niet precies twee priemgetallen".format(line)
+		return True
 	test.test = testMethod
 
-	test.description = lambda : "calculations on each line contain exactly two primes"
+	test.description = lambda : "de berekeningen op elke regel bevatten precies twee priemgetallen"
