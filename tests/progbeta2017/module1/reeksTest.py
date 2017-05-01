@@ -6,11 +6,12 @@ import checkpy.assertlib as assertlib
 def correctBarriers(test):
 	def testMethod():
 		result = lib.getLine(lib.outputOf(_fileName), 0)
-		testResult = assertlib.match(result, ".*9551.*9587.*") or assertlib.match(result, ".*9587.*9551.*")
+		testResult = assertlib.match(result, ".*9552.*9586.*") or assertlib.match(result, ".*9586.*9552.*")
 		return testResult
 	test.test = testMethod
 
 	test.description = lambda : "geeft het correcte beginpunt en eindpunt van de reeks"
+	test.fail = lambda info : "let op: de priemgetallen horen niet bij de reeks!"
 
 @t.test(10)
 def correctDistance(test):
