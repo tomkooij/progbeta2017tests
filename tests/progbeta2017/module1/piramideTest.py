@@ -1,6 +1,7 @@
 import checkpy.tests as t
 import checkpy.lib as lib
 import checkpy.assertlib as assertlib
+import re
 
 @t.test(0)
 def exactMario0(test):
@@ -9,39 +10,42 @@ def exactMario0(test):
 
 @t.test(1)
 def exactMario3(test):
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName, [3]), 
-"""    # #
-  # # #
-# # # #
-""")
-	test.description = lambda : "print een pyramide van 3 hoog"
+  test.test = lambda : assertlib.match(lib.outputOf(_fileName, [3]), 
+    re.compile(".*"
+      "(    # #)[ ]*(\n)"
+      "(  # # #)[ ]*(\n)"
+      "(# # # #)[ ]*"
+      ".*", re.MULTILINE))
+  test.description = lambda : "print een pyramide van 3 hoog"
 
 @t.test(2)
 def exactMario23(test):
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName, [23]), 
-"""                                            # #
-                                          # # #
-                                        # # # #
-                                      # # # # #
-                                    # # # # # #
-                                  # # # # # # #
-                                # # # # # # # #
-                              # # # # # # # # #
-                            # # # # # # # # # #
-                          # # # # # # # # # # #
-                        # # # # # # # # # # # #
-                      # # # # # # # # # # # # #
-                    # # # # # # # # # # # # # #
-                  # # # # # # # # # # # # # # #
-                # # # # # # # # # # # # # # # #
-              # # # # # # # # # # # # # # # # #
-            # # # # # # # # # # # # # # # # # #
-          # # # # # # # # # # # # # # # # # # #
-        # # # # # # # # # # # # # # # # # # # #
-      # # # # # # # # # # # # # # # # # # # # #
-    # # # # # # # # # # # # # # # # # # # # # #
-  # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # # # # # #""")
+	test.test = lambda : assertlib.match(lib.outputOf(_fileName, [23]),
+    re.compile(".*"
+      "(                                            # #)[ ]*(\n)"
+      "(                                          # # #)[ ]*(\n)"
+      "(                                        # # # #)[ ]*(\n)"
+      "(                                      # # # # #)[ ]*(\n)"
+      "(                                    # # # # # #)[ ]*(\n)"
+      "(                                  # # # # # # #)[ ]*(\n)"
+      "(                                # # # # # # # #)[ ]*(\n)"
+      "(                              # # # # # # # # #)[ ]*(\n)"
+      "(                            # # # # # # # # # #)[ ]*(\n)"
+      "(                          # # # # # # # # # # #)[ ]*(\n)"
+      "(                        # # # # # # # # # # # #)[ ]*(\n)"
+      "(                      # # # # # # # # # # # # #)[ ]*(\n)"
+      "(                    # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(                  # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(                # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(              # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(            # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(          # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(        # # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(      # # # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(    # # # # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(  # # # # # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      "(# # # # # # # # # # # # # # # # # # # # # # # #)[ ]*(\n)"
+      ".*", re.MULTILINE))
 	test.description = lambda : "print een pyramide van 23 hoog"
 
 
