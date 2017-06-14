@@ -4,5 +4,5 @@ import checkpy.assertlib as assertlib
 
 @t.test(0)
 def showsGraph(test):
-	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "savefig")
-	test.description = lambda : "slaat een grafiek op"
+	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "savefig") or assertlib.fileContainsFunctionCalls(_fileName, "show")
+	test.description = lambda : "slaat een grafiek op, of laat een grafiek zien"
