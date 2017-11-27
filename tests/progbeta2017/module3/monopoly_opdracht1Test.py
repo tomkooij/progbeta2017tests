@@ -46,7 +46,7 @@ def correctAverageTrump(test):
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000)
 			return testInput
 
-
+	test.fail = lambda info : "de correcte waarde is ongeveer 147"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
 	test.description = lambda : "Monopoly werkt in Trump-Mode"
 
@@ -60,6 +60,7 @@ def correctAverageStartgeld(test):
 		except:
 			return False
 
+	test.fail = lambda info : "de correcte waarde is ongeveer 187"
 	test.test = lambda : assertlib.between(try_run(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
 
