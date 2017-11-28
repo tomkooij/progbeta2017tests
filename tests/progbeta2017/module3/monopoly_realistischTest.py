@@ -16,11 +16,13 @@ def after():
 @t.test(0)
 def hassimuleer_groot_aantal_potjes_Monopoly(test):
 	def try_run():
-		try:	
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000, 1000000)
-			return assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly")
-		except:
-			return False
+		if assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly"):
+			try:	
+				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000, 1000000)
+				return True
+			except:
+				return False
+		return False
 
 	test.test = try_run
 	test.fail = lambda info : "zorg dat de functie twee argumenten heeft, startgeld voor speler 1 en startgeld voor speler 2"
