@@ -34,13 +34,14 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 @t.test(10)
 def correctAverageDiv(test):
 	def testMethod():
-		if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), None):
+		outcome = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500)
+		if assertlib.sameType(outcome, None):
 			info = "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
-		elif assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), 0, 99999999):
+		elif assertlib.between(outcome, 0, 99999999):
 			info = "Als speler 1 meer straten heeft dan speler 2 is het verschil negatief"
 		else:
 			info = "Het verschil is niet erg groot, gemiddeld zelfs minder dan 1 straat"
-		return assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), -.45, -.15), info
+		return assertlib.between(outcome, -.45, -.15), info
 
 	test.test = testMethod
 	test.description = lambda : "Monopoly met twee spelers geeft de het correcte gemiddelde verschil in gekochten straten"
