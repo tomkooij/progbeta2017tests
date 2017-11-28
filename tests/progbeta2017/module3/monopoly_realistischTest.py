@@ -18,13 +18,11 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 	def try_run():
 		try:	
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000, 1000000)
-			return True
+			return assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly")
 		except:
 			return False
 
-	test.test = lambda : (assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly") and try_run())
-
-	
+	test.test = try_run
 	test.fail = lambda info : "zorg dat de functie twee argumenten heeft, startgeld voor speler 1 en startgeld voor speler 2"
 	test.description = lambda : "definieert de functie simuleer_potjeAndsimuleer_groot_aanal_potjes_Monopoly met twee argumenten"
 	test.timeout = lambda : 40
@@ -33,16 +31,16 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 @t.passed(hassimuleer_groot_aantal_potjes_Monopoly)
 @t.test(10)
 def correctAverageDiv(test):
+	def testMethod():
+		if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), None):
+			info = "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
+		elif assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), 0, 99999999):
+			info = "Als speler 1 meer straten heeft dan speler 2 is het verschil negatief"
+		else:
+			info = "Het verschil is niet erg groot, gemiddeld zelfs minder dan 1 straat"
+		return assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), -.45, -.15), info
 
-	if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), None):
-		test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
-	elif assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), 0, 99999999):
-		test.fail = lambda info : "Als speler 1 meer straten heeft dan speler 2 is het verschil negatief"
-	else:
-		test.fail = lambda info : "Het verschil is niet erg groot, gemiddeld zelfs minder dan 1 straat"
-
-	
-	test.test = lambda : assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), -.45, -.15)
+	test.test = testMethod
 	test.description = lambda : "Monopoly met twee spelers geeft de het correcte gemiddelde verschil in gekochten straten"
 	test.timeout = lambda : 40
 

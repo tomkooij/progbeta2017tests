@@ -39,7 +39,7 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 			info = "de functie simuleer_potje_Monopoly is nog niet gedefinieerd"
 		elif not test_groot_aantal_potjes:
 			info = "de functie simuleer_potje_Monopoly is gedefinieerd :) \n  - de functie simuleer_groot_aantal_potjes_Monopoly nog niet"
-		return lambda : test_potje and test_groot_aantal_potjes, info
+		return test_potje and test_groot_aantal_potjes, info
 
 	test.test = testMethod
 	test.description = lambda : "definieert de functie simuleer_potje_Monopoly en simuleer_groot_aantal_potjes_Monopoly"
