@@ -31,15 +31,17 @@ def correctDice(test):
 @t.test(20)
 def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 
-	test_potje = assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_potje_Monopoly")
-	test_groot_aantal_potjes = assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly")
+	def testMethod():
+		test_potje = assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_potje_Monopoly")
+		test_groot_aantal_potjes = assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly")
+		info = ""
+		if not test_potje:
+			info = "de functie simuleer_potje_Monopoly is nog niet gedefinieerd"
+		elif not test_groot_aantal_potjes:
+			info = "de functie simuleer_potje_Monopoly is gedefinieerd :) \n  - de functie simuleer_groot_aantal_potjes_Monopoly nog niet"
+		return lambda : test_potje and test_groot_aantal_potjes, info
 
-	if not test_potje: 
-		test.fail = lambda info : "de functie simuleer_potje_Monopoly is nog niet gedefinieerd"
-	else:
-		if not test_groot_aantal_potjes:
-			test.fail = lambda info : "de functie simuleer_potje_Monopoly is gedefinieerd :) \n  - de functie simuleer_groot_aantal_potjes_Monopoly nog niet"
-	test.test = lambda : test_potje and test_groot_aantal_potjes
+	test.test = testMethod
 	test.description = lambda : "definieert de functie simuleer_potje_Monopoly en simuleer_groot_aantal_potjes_Monopoly"
 
 
@@ -51,10 +53,16 @@ def correctAverageTrump(test):
 		try:	
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)()
 			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(), None):
+				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 			return testInput
 		except:
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000)
+			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000), None):
+				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
 			return testInput
+
+
 
 	test.fail = lambda info : "de correcte waarde is ongeveer 147"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
