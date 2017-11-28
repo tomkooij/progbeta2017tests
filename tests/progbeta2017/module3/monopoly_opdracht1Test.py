@@ -1,8 +1,18 @@
 import checkpy.tests as t
 import checkpy.lib as lib
 import checkpy.assertlib as assertlib
-import re
-import os
+
+
+
+def before():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("Agg")
+	lib.neutralizeFunction(plt.pause)
+
+def after():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("TkAgg")
+	reload(plt)
 
 @t.test(0)
 def hasworp_met_twee_dobbelstenen(test):
