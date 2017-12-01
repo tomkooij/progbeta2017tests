@@ -51,7 +51,7 @@ def correctAverageDiv(test):
 @t.passed(correctAverageDiv)
 @t.test(20)
 def correctAverageDiv(test):
-	test.test = lambda : assertlib.numberOnLine(25, lib.getLine(lib.outputOf(_fileName), 0))
+	test.test = lambda : assertlib.numberOnLine(125, lib.getLine(lib.outputOf(_fileName), 0))
 	test.description = lambda : "Monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
 	test.timeout = lambda : 40
 
