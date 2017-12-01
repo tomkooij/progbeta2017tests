@@ -63,10 +63,11 @@ def correctAverageTrump(test):
 			return testInput
 
 
-
 	test.fail = lambda info : "de correcte waarde is ongeveer 147"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
 	test.description = lambda : "Monopoly werkt in Trump-Mode"
+	test.timeout = lambda : 20
+
 
 @t.passed(correctAverageTrump)
 @t.test(40)
@@ -81,6 +82,7 @@ def correctAverageStartgeld(test):
 	test.fail = lambda info : "de correcte waarde is ongeveer 187"
 	test.test = lambda : assertlib.between(try_run(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
+	test.timeout = lambda : 20
 
 
 
