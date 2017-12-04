@@ -27,7 +27,7 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 	
 	test.fail = lambda info : "zorg dat de functie twee argumenten heeft, startgeld voor speler 1 en startgeld voor speler 2"
 	test.description = lambda : "definieert de functie simuleer_potjeAndsimuleer_groot_aanal_potjes_Monopoly met twee argumenten"
-	test.timeout = lambda : 40
+	test.timeout = lambda : 60
 
 
 @t.passed(hassimuleer_groot_aantal_potjes_Monopoly)
@@ -44,7 +44,7 @@ def correctAverageDiv(test):
 	
 	test.test = lambda : assertlib.between(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500), -.45, -.15)
 	test.description = lambda : "Monopoly met twee spelers geeft de het correcte gemiddelde verschil in gekochten straten"
-	test.timeout = lambda : 40
+	test.timeout = lambda : 60
 
 
 
@@ -53,7 +53,7 @@ def correctAverageDiv(test):
 def correctAverageDiv(test):
 	test.test = lambda : assertlib.numberOnLine(125, lib.getLine(lib.outputOf(_fileName), 0))
 	test.description = lambda : "Monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
-	test.timeout = lambda : 40
+	test.timeout = lambda : 60
 
 
 
