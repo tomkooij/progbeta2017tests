@@ -26,8 +26,8 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 
 	test.test = try_run
 	test.fail = lambda info : "zorg dat de functie twee argumenten heeft, startgeld voor speler 1 en startgeld voor speler 2"
-	test.description = lambda : "definieert de functie simuleer_potjeAndsimuleer_groot_aanal_potjes_Monopoly met twee argumenten"
-	test.timeout = lambda : 60
+	test.description = lambda : "definieert de functie simuleer_potje en simuleer_groot_aanal_potjes_Monopoly met twee argumenten"
+	test.timeout = lambda : 90
 
 
 @t.passed(hassimuleer_groot_aantal_potjes_Monopoly)
@@ -45,16 +45,30 @@ def correctAverageDiv(test):
 
 	test.test = testMethod
 	test.description = lambda : "Monopoly met twee spelers geeft de het correcte gemiddelde verschil in gekochten straten"
-	test.timeout = lambda : 60
+	test.timeout = lambda : 90
 
 
 
 @t.passed(correctAverageDiv)
 @t.test(20)
 def correctAverageDiv(test):
-	test.test = lambda : assertlib.numberOnLine(125, lib.getLine(lib.outputOf(_fileName), 0))
+
+	def findline(outputOf):
+		tsts = ['startgeld', 'evenveel', 'straten']
+		for line in outputOf.split("\n"):
+			if all([assertlib.contains(line, tst) for tst in tsts]):
+				return line
+		return ""
+
+	line = findline(lib.outputOf(_fileName))
+	print line
+
+	if assertlib.numberOnLine(75, line):
+		test.fail = lambda info : "De gevonden waarde is 75 euro. Checkpy het programma nog een keer."
+
+	test.test = lambda : assertlib.numberOnLine(125, line)
 	test.description = lambda : "Monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
-	test.timeout = lambda : 60
+	test.timeout = lambda : 90
 
 
 

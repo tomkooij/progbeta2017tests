@@ -18,6 +18,7 @@ def after():
 def hasworp_met_twee_dobbelstenen(test):
 	test.test = lambda : assertlib.fileContainsFunctionDefinitions(_fileName, "worp_met_twee_dobbelstenen")
 	test.description = lambda : "definieert de functie worp_met_twee_dobbelstenen"
+	test.timeout = lambda : 60
 
 
 @t.passed(hasworp_met_twee_dobbelstenen)
@@ -25,7 +26,7 @@ def hasworp_met_twee_dobbelstenen(test):
 def correctDice(test):
 	test.test = lambda : assertlib.between(lib.getFunction("worp_met_twee_dobbelstenen", _fileName)(), 2, 12)
 	test.description = lambda : "returnt een correcte waarde voor een worp van twee dobbelstenen"
-	test.timeout = lambda : 30
+	test.timeout = lambda : 60
 	
 
 @t.passed(correctDice)
@@ -44,7 +45,7 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 
 	test.test = testMethod
 	test.description = lambda : "definieert de functie simuleer_potje_Monopoly en simuleer_groot_aantal_potjes_Monopoly"
-	test.timeout = lambda : 30
+	test.timeout = lambda : 60
 
 
 @t.passed(hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly)
@@ -68,7 +69,7 @@ def correctAverageTrump(test):
 	test.fail = lambda info : "de correcte waarde is ongeveer 147"
 	test.test = lambda : assertlib.between(try_run(), 145, 149)
 	test.description = lambda : "Monopoly werkt in Trump-Mode"
-	test.timeout = lambda : 30
+	test.timeout = lambda : 60
 
 
 @t.passed(correctAverageTrump)
@@ -84,7 +85,7 @@ def correctAverageStartgeld(test):
 	test.fail = lambda info : "de correcte waarde is ongeveer 187"
 	test.test = lambda : assertlib.between(try_run(), 184, 189)
 	test.description = lambda : "Monopoly werkt met 1500 euro startgeld"
-	test.timeout = lambda : 30
+	test.timeout = lambda : 60
 
 
 
