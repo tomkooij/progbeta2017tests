@@ -25,7 +25,7 @@ def correctDistance(test):
 
 		return test_distance, info
 
-	test.test = testMethod
+	test.test = testMethode
 	test.description = lambda : "print de correcte afgelegde afstand"
 
 # @t.test(1)
