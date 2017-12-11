@@ -19,16 +19,10 @@ def after():
 def correctDistance(test):
 
 	def testMethode():
-		test_distance = assertlib.numberOnLine(10.86, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.02)
-		if assertlib.numberOnLine(10860, lib.getLine(lib.outputOf(_fileName), 0), deviation = 20):
-			info = "Zorg dat je de afgelegde afstand in kilometers geeft"
+		test_distance = (assertlib.numberOnLine(10.86, lib.getLine(lib.outputOf(_fileName), 0), deviation = 0.02) or assertlib.numberOnLine(10860, lib.getLine(lib.outputOf(_fileName), 0), deviation = 20))
+			
 
-		return test_distance, info
+		return test_distance
 
 	test.test = testMethode
 	test.description = lambda : "print de correcte afgelegde afstand"
-
-# @t.test(1)
-# def showsGraph(test):
-# 	test.test = lambda : assertlib.fileContainsFunctionCalls(_fileName, "savefig") or assertlib.fileContainsFunctionCalls(_fileName, "show")
-# 	test.description = lambda : "slaat een grafiek op, of laat een grafiek zien"
