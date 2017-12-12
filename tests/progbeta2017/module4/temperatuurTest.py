@@ -3,6 +3,16 @@ import checkpy.lib as lib
 import checkpy.assertlib as assertlib
 
 # Thanks to Vera Schild!
+def before():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("Agg")
+	lib.neutralizeFunction(plt.pause)
+
+def after():
+	import matplotlib.pyplot as plt
+	plt.switch_backend("TkAgg")
+	reload(plt)
+
 
 @t.test(0)
 def correctHighestTemp(test):
