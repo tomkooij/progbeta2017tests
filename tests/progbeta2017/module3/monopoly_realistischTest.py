@@ -52,21 +52,23 @@ def correctAverageDiv(test):
 @t.passed(correctAverageDiv)
 @t.test(20)
 def correctAverageDiv(test):
+	def testMethod():
+		def findline(outputOf):
+			tsts = ['startgeld', 'evenveel', 'straten']
+			for line in outputOf.split("\n"):
+				if all([assertlib.contains(line, tst) for tst in tsts]):
+					return line
+			return ""
 
-	def findline(outputOf):
-		tsts = ['startgeld', 'evenveel', 'straten']
-		for line in outputOf.split("\n"):
-			if all([assertlib.contains(line, tst) for tst in tsts]):
-				return line
-		return ""
+		line = findline(lib.outputOf(_fileName))
 
-	line = findline(lib.outputOf(_fileName))
-	print line
+		info = ""
+		if assertlib.numberOnLine(75, line):
+			info = "De gevonden waarde is 75 euro. Checkpy het programma nog een keer."
 
-	if assertlib.numberOnLine(75, line):
-		test.fail = lambda info : "De gevonden waarde is 75 euro. Checkpy het programma nog een keer."
-
-	test.test = lambda : assertlib.numberOnLine(125, line)
+		return assertlib.numberOnLine(125, line), info
+	
+	test.test = testMethod
 	test.description = lambda : "Monopoly met twee spelers vindt het correcte extra startgeld voor speler 2"
 	test.timeout = lambda : 90
 
