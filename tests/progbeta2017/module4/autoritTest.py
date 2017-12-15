@@ -26,3 +26,4 @@ def correctDistance(test):
 
 	test.test = testMethode
 	test.description = lambda : "print de correcte afgelegde afstand"
+	test.timeout = lambda : 60

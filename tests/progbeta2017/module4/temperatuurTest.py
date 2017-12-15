@@ -18,6 +18,7 @@ def after():
 def correctHighestTemp(test):
 	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), '36.8')
 	test.description = lambda : "print hoogste temperatuur"
+	test.timeout = lambda : 60
 
 @t.test(1)
 def correctDateHighestTemp(test):
@@ -26,11 +27,13 @@ def correctDateHighestTemp(test):
 			     sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])\
 		             and assertlib.contains(lib.outputOf(_fileName), '1947')
 	test.description = lambda : "print datum hoogste temperatuur"
+	test.timeout = lambda : 60
 
 @t.test(2)
 def correctLowestTemp(test):
 	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), '-24.8')
 	test.description = lambda : "print laagste temperatuur"
+	test.timeout = lambda : 60
 
 @t.test(3)
 def correctDateLowestTemp(test):
@@ -39,11 +42,13 @@ def correctDateLowestTemp(test):
 			     sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])\
 		             and assertlib.contains(lib.outputOf(_fileName), '1942')
 	test.description = lambda : "print datum laagste temperatuur"
+	test.timeout = lambda : 60
 
 @t.test(4)
 def correctLongestFreezing(test):
 	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), '21')
 	test.description = lambda : "print de langste periode dat het aaneengesloten heeft gevroren"
+	test.timeout = lambda : 60
 
 @t.test(5)
 def correctDateLongestFreezingp(test):
@@ -52,11 +57,13 @@ def correctDateLongestFreezingp(test):
 			     sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])\
 		             and assertlib.contains(lib.outputOf(_fileName), '1947')
 	test.description = lambda : "print laatste dag van de langste periode dat het aaneengesloten heeft gevroren"
+	test.timeout = lambda : 60
 
 @t.test(6)
 def correctFirstHeatWave(test):
 	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), '1911')
 	test.description = lambda : "print het eerste jaartal waarin er sprake was van een hittegolf"
+	test.timeout = lambda : 60
 
 # @t.test(7)
 # def showsGraph(test):
